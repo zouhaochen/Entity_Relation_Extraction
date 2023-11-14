@@ -4,7 +4,7 @@ from config import *
 
 
 def generate_rel():
-    with open(SCHEMA_PATH) as f:
+    with open(SCHEMA_PATH, encoding='utf-8') as f:
         rel_list = []
         for line in f.readlines():
 
