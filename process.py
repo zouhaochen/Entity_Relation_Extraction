@@ -18,6 +18,9 @@ def generate_rel():
         # rel_list: relation to id
         rel_dict = {v: k for k, v in enumerate(rel_list)}
         df = pd.DataFrame(rel_dict.items())
+
+        print(df)
+
         df.to_csv(REL_PATH, header=None, index=None)
 
 

@@ -12,7 +12,7 @@ TRAIN_JSON_PATH = './data/input/duie/duie_train_bk.json'
 TEST_JSON_PATH = './data/input/duie/duie_test.json'
 DEV_JSON_PATH = './data/input/duie/duie_dev.json'
 
-BERT_MODEL_NAME = '../huggingface/bert-base-chinese/'
+BERT_MODEL_NAME = './hugging_face/bert-base-chinese'
 
 import torch
 
