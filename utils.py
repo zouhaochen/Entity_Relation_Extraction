@@ -43,9 +43,11 @@ class Dataset(data.Dataset):
         info['offset_mapping'] = tokenized['offset_mapping']
         return self.parse_json(info)
 
+    # 解析基本信息
     def parse_json(self, info):
         text = info['text']
         input_ids = info['input_ids']
+
         dct = {
             'text': text,
             'input_ids': input_ids,
@@ -55,11 +57,15 @@ class Dataset(data.Dataset):
             'triple_list': [],
             'triple_id_list': []
         }
+
         for spo in info['spo_list']:
+
             subject = spo['subject']
             object = spo['object']['@value']
             predicate = spo['predicate']
+
             dct['triple_list'].append((subject, predicate, object))
+
             # 计算 subject 实体位置
             tokenized = self.tokenizer(subject, add_special_tokens=False)
             sub_token = tokenized['input_ids']
@@ -67,6 +73,7 @@ class Dataset(data.Dataset):
             if not sub_pos_id:
                 continue
             sub_head_id, sub_tail_id = sub_pos_id
+
             # 计算 object 实体位置
             tokenized = self.tokenizer(object, add_special_tokens=False)
             obj_token = tokenized['input_ids']
@@ -74,6 +81,7 @@ class Dataset(data.Dataset):
             if not obj_pos_id:
                 continue
             obj_head_id, obj_tail_id = obj_pos_id
+
             # 数据组装
             dct['sub_head_ids'].append(sub_head_id)
             dct['sub_tail_ids'].append(sub_tail_id)
