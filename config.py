@@ -1,3 +1,5 @@
+import torch
+
 # 关系表文件地址
 REL_PATH = './data/output/rel.csv'
 
@@ -7,14 +9,11 @@ REL_SIZE = 48
 # 原始文件
 SCHEMA_PATH = './data/input/duie/duie_schema.json'
 
-
 TRAIN_JSON_PATH = './data/input/duie/duie_train_bk.json'
 TEST_JSON_PATH = './data/input/duie/duie_test.json'
 DEV_JSON_PATH = './data/input/duie/duie_dev.json'
 
 BERT_MODEL_NAME = './hugging_face/bert-base-chinese'
-
-import torch
 
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 
