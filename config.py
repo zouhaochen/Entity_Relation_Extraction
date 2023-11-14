@@ -4,10 +4,11 @@ REL_PATH = './data/output/rel.csv'
 # 关系种类数量
 REL_SIZE = 48
 
-
+# 原始文件
 SCHEMA_PATH = './data/input/duie/duie_schema.json'
 
-TRAIN_JSON_PATH = './data/input/duie/duie_train.json'
+
+TRAIN_JSON_PATH = './data/input/duie/duie_train_bk.json'
 TEST_JSON_PATH = './data/input/duie/duie_test.json'
 DEV_JSON_PATH = './data/input/duie/duie_dev.json'
 
