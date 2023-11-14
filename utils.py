@@ -7,15 +7,18 @@ import numpy as np
 from transformers import BertTokenizerFast
 
 
+# 加载关系表
 def get_rel():
     df = pd.read_csv(REL_PATH, names=['rel', 'id'])
     return df['rel'].tolist(), dict(df.values)
 
 
+# Dataset初始化
 class Dataset(data.Dataset):
     def __init__(self, type='train'):
         super().__init__()
         _, self.rel2id = get_rel()
+
         # 加载文件
         if type == 'train':
             file_path = TRAIN_JSON_PATH
@@ -23,8 +26,9 @@ class Dataset(data.Dataset):
             file_path = TEST_JSON_PATH
         elif type == 'dev':
             file_path = DEV_JSON_PATH
-        with open(file_path) as f:
+        with open(file_path, encoding='utf-8') as f:
             self.lines = f.readlines()
+
         # 加载bert
         self.tokenizer = BertTokenizerFast.from_pretrained(BERT_MODEL_NAME)
 
@@ -237,4 +241,4 @@ def report(model, encoded_text, pred_y, batch_text, batch_mask):
 if __name__ == '__main__':
     dataset = Dataset()
     loader = data.DataLoader(dataset, batch_size=2, shuffle=False, collate_fn=dataset.collate_fn)
-    print(iter(loader).next())
+    print(next(iter(loader)))
