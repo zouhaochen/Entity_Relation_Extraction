@@ -10,6 +10,7 @@ if __name__ == '__main__':
     dataset = Dataset()
     for e in range(EPOCH):
         loader = data.DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True, collate_fn=dataset.collate_fn)
+
         for b, (batch_mask, batch_x, batch_y) in enumerate(loader):
             batch_text, batch_sub_rnd = batch_x
             batch_sub, batch_obj_rel = batch_y
@@ -38,6 +39,9 @@ if __name__ == '__main__':
             optimizer.step()
 
             print('>> epoch:', e, 'batch:', b, 'loss:', loss.item())
+
             report(model, encoded_text, pred_y, batch_text, batch_mask)
 
         torch.save(model, MODEL_DIR + f'model_{e}.pth')
+
+
