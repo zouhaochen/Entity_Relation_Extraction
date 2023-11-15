@@ -215,6 +215,7 @@ def get_triple_list(sub_head_ids, sub_tail_ids, model, encoded_text, text, mask,
                 obj_tail_pos_id = offset_mapping[obj_tail_id][1]
                 object_text = text[obj_head_pos_id:obj_tail_pos_id]
                 triple_list.append((subject_text, id2rel[j], object_text))
+
     return list(set(triple_list))
 
 
