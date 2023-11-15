@@ -1,10 +1,11 @@
-import torch.utils.data as data
-import pandas as pd
-import random
-from config import *
 import json
-import numpy as np
+import random
+
+import pandas as pd
+import torch.utils.data as data
 from transformers import BertTokenizerFast
+
+from config import *
 
 
 # 加载关系表
@@ -127,24 +128,29 @@ class Dataset(data.Dataset):
             pad_len = max_len - item_len
             input_ids = input_ids + [0] * pad_len
             mask = [1] * item_len + [0] * pad_len
+
             # 填充subject位置
-            sub_heads_seq = multihot(max_len, item['sub_head_ids'])
-            sub_tails_seq = multihot(max_len, item['sub_tail_ids'])
+            sub_heads_seq = multi_hot(max_len, item['sub_head_ids'])
+            sub_tails_seq = multi_hot(max_len, item['sub_tail_ids'])
+
             # 随机选择一个subject
             if len(item['triple_id_list']) == 0:
                 continue
             sub_rnd = random.choice(item['triple_id_list'])[0]
-            sub_rnd_head_seq = multihot(max_len, [sub_rnd[0]])
-            sub_rnd_tail_seq = multihot(max_len, [sub_rnd[1]])
+            sub_rnd_head_seq = multi_hot(max_len, [sub_rnd[0]])
+            sub_rnd_tail_seq = multi_hot(max_len, [sub_rnd[1]])
+
             # 根据随机subject计算relations矩阵
             obj_head_mx = [[0] * REL_SIZE for _ in range(max_len)]
             obj_tail_mx = [[0] * REL_SIZE for _ in range(max_len)]
+
             for triple in item['triple_id_list']:
                 rel_id = triple[1]
                 head_id, tail_id = triple[2]
                 if triple[0] == sub_rnd:
                     obj_head_mx[head_id][rel_id] = 1
                     obj_tail_mx[tail_id][rel_id] = 1
+
             # 重新组装
             batch_text['text'].append(item['text'])
             batch_text['input_ids'].append(input_ids)
@@ -163,7 +169,7 @@ class Dataset(data.Dataset):
 
 
 # 生成长度为length，hot_pos位置为1，其他位置为0的列表
-def multihot(length, hot_pos):
+def multi_hot(length, hot_pos):
     return [1 if i in hot_pos else 0 for i in range(length)]
 
 
@@ -183,8 +189,8 @@ def get_triple_list(sub_head_ids, sub_tail_ids, model, encoded_text, text, mask,
         subject_text = text[sub_head_pos_id:sub_tail_pos_id]
 
         # 根据 subject 计算出对应 object 和 relation
-        sub_head_seq = torch.tensor(multihot(len(mask), sub_head_id)).to(DEVICE)
-        sub_tail_seq = torch.tensor(multihot(len(mask), sub_tail_id)).to(DEVICE)
+        sub_head_seq = torch.tensor(multi_hot(len(mask), sub_head_id)).to(DEVICE)
+        sub_tail_seq = torch.tensor(multi_hot(len(mask), sub_tail_id)).to(DEVICE)
 
         pred_obj_head, pred_obj_tail = model.get_objs_for_specific_sub( \
             encoded_text.unsqueeze(0), sub_head_seq.unsqueeze(0), sub_tail_seq.unsqueeze(0))
