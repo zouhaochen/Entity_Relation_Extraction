@@ -37,11 +37,7 @@ if __name__ == '__main__':
             loss.backward()
             optimizer.step()
 
-            if b % 50 == 0:
-                print('>> epoch:', e, 'batch:', b, 'loss:', loss.item())
+            print('>> epoch:', e, 'batch:', b, 'loss:', loss.item())
+            report(model, encoded_text, pred_y, batch_text, batch_mask)
 
-            if b % 500 == 0:
-                report(model, encoded_text, pred_y, batch_text, batch_mask)
-
-        if e % 3 == 0:
-            torch.save(model, MODEL_DIR + f'model_{e}.pth')
+        torch.save(model, MODEL_DIR + f'model_{e}.pth')
