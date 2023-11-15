@@ -27,6 +27,7 @@ class Dataset(data.Dataset):
             file_path = TEST_JSON_PATH
         elif type == 'dev':
             file_path = DEV_JSON_PATH
+
         with open(file_path, encoding='utf-8') as f:
             self.lines = f.readlines()
 
@@ -208,6 +209,7 @@ def get_triple_list(sub_head_ids, sub_tail_ids, model, encoded_text, text, mask,
                 obj_tail_id = obj_tail_ids[0]
                 if mask[obj_head_id] == 0 or mask[obj_tail_id] == 0:
                     continue
+
                 # 根据位置信息反推出 object 文本内容，mapping中已经有移位，不需要再加1
                 obj_head_pos_id = offset_mapping[obj_head_id][0]
                 obj_tail_pos_id = offset_mapping[obj_tail_id][1]
