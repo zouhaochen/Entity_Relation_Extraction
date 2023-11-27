@@ -13,7 +13,6 @@ TRAIN_JSON_PATH = './data/input/duie/duie_train.json'
 TEST_JSON_PATH = './data/input/duie/duie_test.json'
 DEV_JSON_PATH = './data/input/duie/duie_dev.json'
 
-
 # SCHEMA_PATH = './data/input/cmeie/schema.json'
 
 # TRAIN_JSON_PATH = './data/input/cmeie/train.json'
