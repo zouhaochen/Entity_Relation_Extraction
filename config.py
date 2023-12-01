@@ -7,7 +7,7 @@ REL_PATH = './data/output/rel.csv'
 REL_SIZE = 48
 
 # 原始文件
-# SCHEMA_PATH = './data/input/duie/duie_schema.json'
+SCHEMA_PATH = './data/input/duie/duie_schema.json'
 
 # TRAIN_JSON_PATH = './data/input/duie/duie_train.json'
 # TEST_JSON_PATH = './data/input/duie/duie_test.json'
