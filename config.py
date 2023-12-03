@@ -4,7 +4,7 @@ import torch
 REL_PATH = './data/output/rel.csv'
 
 # 关系种类数量
-# REL_SIZE = 48
+REL_SIZE = 48
 
 # 原始文件
 # SCHEMA_PATH = './data/input/duie/duie_schema.json'
