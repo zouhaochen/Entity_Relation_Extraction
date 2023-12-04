@@ -3,13 +3,13 @@ from model import *
 from torch.utils import data
 
 if __name__ == '__main__':
-    model = torch.load(MODEL_DIR + f'model_27.pth', map_location=DEVICE)
+    model = torch.load(MODEL_DIR + f'model_2.pth', map_location=DEVICE)
 
     dataset = Dataset('dev')
 
     with torch.no_grad():
 
-        loader = data.DataLoader(dataset, batch_size=2, shuffle=False, collate_fn=dataset.collate_fn)
+        loader = data.DataLoader(dataset, batch_size=16, shuffle=False, collate_fn=dataset.collate_fn)
         
         correct_num, predict_num, gold_num = 0, 0, 0
         pred_triple_list = []

@@ -18,7 +18,7 @@ DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 BATCH_SIZE = 16
 BERT_DIM = 768
-LR = 1e-4
+LR = 5e-5
 EPOCH = 50
 MODEL_DIR = './data/output/'
 
