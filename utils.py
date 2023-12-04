@@ -38,12 +38,26 @@ class Dataset(data.Dataset):
         return len(self.lines)
 
     def __getitem__(self, index):
+
+        # 读取文本
         line = self.lines[index]
         info = json.loads(line)
+
+        # 文本bert分词
         tokenized = self.tokenizer(info['text'], return_offsets_mapping=True)
         info['input_ids'] = tokenized['input_ids']
         info['offset_mapping'] = tokenized['offset_mapping']
-        return self.parse_json(info)
+        # return self.parse_json(info)
+        print(info)
+        exit()
+
+
+if __name__ == '__main__':
+    dataset = Dataset()
+    loader = data.DataLoader(dataset)
+    print(next(iter(loader)))
+
+
 
     # 解析基本信息
     def parse_json(self, info):
@@ -255,7 +269,7 @@ def report(model, encoded_text, pred_y, batch_text, batch_mask):
     print('\tprecision:%.3f' % precision, 'recall:%.3f' % recall, 'f1_score:%.3f' % f1_score)
 
 
-if __name__ == '__main__':
-    dataset = Dataset()
-    loader = data.DataLoader(dataset, batch_size=2, shuffle=False, collate_fn=dataset.collate_fn)
-    print(next(iter(loader)))
+#if __name__ == '__main__':
+#    dataset = Dataset()
+#    loader = data.DataLoader(dataset, batch_size=2, shuffle=False, collate_fn=dataset.collate_fn)
+#    print(next(iter(loader)))
