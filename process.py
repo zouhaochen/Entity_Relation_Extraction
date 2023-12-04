@@ -8,11 +8,11 @@ def generate_rel():
         rel_list = []
         for line in f.readlines():
 
-            print(line)
-            exit()
-
             # json.load加载文本转化字典类型
             info = json.loads(line)
+
+            print(info)
+            exit()
 
             # 取字典内关系predicate值
             # rel_list: id to relation
