@@ -9,7 +9,7 @@ if __name__ == '__main__':
 
     with torch.no_grad():
 
-        loader = data.DataLoader(dataset, batch_size=16, shuffle=False, collate_fn=dataset.collate_fn)
+        loader = data.DataLoader(dataset, batch_size=32, shuffle=False, collate_fn=dataset.collate_fn)
         
         correct_num, predict_num, gold_num = 0, 0, 0
         pred_triple_list = []
