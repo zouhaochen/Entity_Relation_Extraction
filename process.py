@@ -8,6 +8,9 @@ def generate_rel():
         rel_list = []
         for line in f.readlines():
 
+            print(line)
+            exit()
+
             # json.load加载文本转化字典类型
             info = json.loads(line)
 
