@@ -11,18 +11,14 @@ def generate_rel():
             # json.load加载文本转化字典类型
             info = json.loads(line)
 
-            print(info)
-            exit()
-
             # 取字典内关系predicate值
             # rel_list: id to relation
             rel_list.append(info['predicate'])
 
         # rel_list: relation to id
         rel_dict = {v: k for k, v in enumerate(rel_list)}
-        df = pd.DataFrame(rel_dict.items())
 
-        print(df)
+        df = pd.DataFrame(rel_dict.items())
 
         df.to_csv(REL_PATH, header=None, index=None)
 
