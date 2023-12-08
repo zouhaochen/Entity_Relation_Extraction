@@ -4,7 +4,6 @@ from torch.utils import data
 
 if __name__ == '__main__':
     model = torch.load(MODEL_DIR + f'model_2.pth', map_location=DEVICE)
-
     dataset = Dataset('dev')
 
     with torch.no_grad():
