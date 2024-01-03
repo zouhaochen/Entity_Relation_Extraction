@@ -1,6 +1,5 @@
 import torch
 
-
 # 关系表文件地址
 REL_PATH = './data/output/rel.csv'
 
