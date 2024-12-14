@@ -9,6 +9,7 @@ import torch.nn.functional as F
 from transformers import logging
 logging.set_verbosity_error()
 
+
 class CasRel(nn.Module):
     def __init__(self):
         super().__init__()
