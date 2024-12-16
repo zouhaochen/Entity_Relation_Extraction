@@ -12,7 +12,6 @@ TRAIN_JSON_PATH = './data/input/cmeie/CMeIE_train.json'
 TEST_JSON_PATH = './data/input/cmeie/CMeIE_test.json'
 DEV_JSON_PATH = './data/input/cmeie/CMeIE_dev.json'
 
-
 BERT_MODEL_NAME = './hugging_face/bert-base-chinese'
 
 
