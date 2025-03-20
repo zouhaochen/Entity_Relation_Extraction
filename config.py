@@ -34,6 +34,7 @@ MODEL_DIR = './data/output/'
 CLS_WEIGHT_COEF = [0.3, 1.0]
 SUB_WEIGHT_COEF = 3
 
+
 SUB_HEAD_BAR = 0.5
 SUB_TAIL_BAR = 0.5
 OBJ_HEAD_BAR = 0.5
