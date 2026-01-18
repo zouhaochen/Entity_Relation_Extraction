@@ -22,6 +22,7 @@ BERT_MODEL_NAME = './hugging_face/bert-base-chinese'
 
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 
+
 BATCH_SIZE = 16
 BERT_DIM = 768
 LR = 5e-5
