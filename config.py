@@ -8,7 +8,6 @@ REL_PATH = './data/output/rel.csv'
 # 关系种类数量
 REL_SIZE = 44
 
-
 SCHEMA_PATH = './data/input/cmeie/schema.json'
 
 TRAIN_JSON_PATH = './data/input/cmeie/CMeIE_train.json'
