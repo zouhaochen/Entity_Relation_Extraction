@@ -22,11 +22,9 @@ LR = 5e-5
 EPOCH = 50
 MODEL_DIR = './data/output/'
 
-
 # 0位置降权(后续需要调整)
 CLS_WEIGHT_COEF = [0.3, 1.0]
 SUB_WEIGHT_COEF = 3
-
 
 SUB_HEAD_BAR = 0.5
 SUB_TAIL_BAR = 0.5
