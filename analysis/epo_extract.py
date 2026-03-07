@@ -1,6 +1,6 @@
 import json
 
-input_file = "../data/input/cmeie/CMeIE_train.json"
+input_file = "../data/input/cmeie/CMeIE_dev.json"
 
 matched_examples = []
 
